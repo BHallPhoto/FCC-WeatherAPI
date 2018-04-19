@@ -5,10 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Weather API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/weather-icons.css">
+    <link rel="stylesheet" href="./src/weather-icons-wind.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./src/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
     <script src="./src/script.js"></script>
 </head>
 <body>
-    
+    <div class="container-fluid">
+        <div class="jumbotron">
+
+            <div class="location">
+                <!-- Button trigger modal -->
+                <a class="button" data-toggle="modal" data-target="#exampleModalCenter">
+                    <i class="fas fa-search"></i>
+                </a>
+  
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for City" aria-label="Search for City" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Search</button>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal End -->
+                <span class="cityState"></span>
+                <div class="currentTime"></div>
+            </div>
+
+            <div class="weatherInfo">
+                <div class="temp"></div>
+                <div class="condition"></div>
+                <div class="humidity"></div>
+                <div class="windSpeed"></div>
+                <div class="windDirection"></div>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content rounded">
+          <div class="modal-header">
+             <h5 class="modal-title" id="modalLabel">City Search</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <div class="form-group">
+                <div class="input-group">
+                   <input type="text" id="cityVal" class="form-control" placeholder="City">
+                </div>
+             </div>
+          </div>
+          <div class="input-group modal-footer">
+             <button type="button" class="btn btn-sm"data-dismiss="modal">Close</button>
+             <input type="button" id="searchSubmit" class="btn btn-sm" name="cityState" value="Search" data-dismiss="modal" onclick="searchCity()">
+          </div>
+       </div>
+    </div>
+</div>

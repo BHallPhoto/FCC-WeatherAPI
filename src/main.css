@@ -1,0 +1,31 @@
+body {
+    background-color: orange;
+}
+
+.container-fluid {
+    min-height: 100vh;
+    text-align: center;
+}
+
+.jumbotron {
+    height: 100%;
+    margin: 20vh auto;
+    max-width: 450px;
+    min-width: 359px;
+}
+
+.pm {
+    font-size: .8em;
+}
+
+.button {
+    padding-bottom: 12px;
+    padding-left: 6px;
+    cursor: pointer;
+    border-style: none;
+}
+.button:hover {
+    text-decoration: none;
+}
+
+
