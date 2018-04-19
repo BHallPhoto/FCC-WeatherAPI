@@ -1,3 +1,4 @@
+// Time and date window function
 window.onload = function () {
 
     const timeNoSecond = new Date().toLocaleTimeString([], {
@@ -13,6 +14,7 @@ window.onload = function () {
 
 };
 
+// document ready json with jQuery
 $(document).ready(() => {
 
     const apiKey = "0f3fd9a2b62cb8cd";

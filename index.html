@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./src/weather-icons.css">
     <link rel="stylesheet" href="./src/weather-icons-wind.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="./src/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -17,13 +18,7 @@
 <body>
     <div class="container-fluid">
         <div class="jumbotron">
-
             <div class="location">
-                <!-- Button trigger modal -->
-                <a class="button" data-toggle="modal" data-target="#exampleModalCenter">
-                    <i class="fas fa-search"></i>
-                </a>
-  
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -40,18 +35,32 @@
                     </div>
                 </div>
                 <!-- Modal End -->
-                <span class="cityState"></span>
-                <div class="currentTime"></div>
             </div>
-
             <div class="weatherInfo">
-                <div class="temp"></div>
-                <div class="condition"></div>
-                <div class="humidity"></div>
-                <div class="windSpeed"></div>
-                <div class="windDirection"></div>
+                <div class="wrapper">
+                    <div class="box a">
+                        <!-- Button Trigger for modal -->
+                        <a class="button" data-toggle="modal" data-target="#exampleModalCenter">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <span class="cityState"></span>
+                    </div>
+                    <div class="box b">
+                        <div class="currentTime"></div>
+                    </div>
+                    <div class="box c">
+                            <div class="condition"></div>
+                    </div>
+                    <div class="box d">
+                        <span class="temp"></span>
+                    </div>
+                    <div class="box e">
+                        <div class="humidity"></div>
+                        <div class="windSpeed"></div>
+                        <div class="windDirection"></div>
+                    </div>
+                </div>                
             </div>
-
         </div>
     </div>
 </body>
