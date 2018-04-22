@@ -35,6 +35,21 @@ body {
 	font-size: 1.5em;
 }
 
+.btn {
+	padding: 0 1.5em;
+}
+.btn:hover {
+	background-color: orange;
+}
+.btn-secondary:hover {
+	color: #444;
+}
+
+.svg-inline--fa.fa-w-16 {
+    width: 2em;
+    height: .8em;
+}
+
 /* Grid */
 .wrapper {
         display: grid;

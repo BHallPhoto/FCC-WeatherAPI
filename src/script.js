@@ -2,7 +2,7 @@
  * Weather API for FreeCodeCamp
  * TODO:
  * - Add Icon for Humidity
- * - Add functionality to switch between F and C degrees
+ * - Add Search for City, anywhere!
  */
 
 // Time and date window function
@@ -103,7 +103,7 @@ $(document).ready(() => {
             fullCityState = city + ", " + state;
 
         document.querySelector(".cityState").innerHTML = fullCityState;
-        document.querySelector(".temp").innerHTML = tempF + "° F";
+        document.querySelector(".temp").innerHTML = tempF;
         document.querySelector(".condition").innerHTML = condition;
         document.querySelector(".humidity").innerHTML = humidity;
         document.querySelector(".windScale").innerHTML = windScale(windSpd);
@@ -148,5 +148,34 @@ $(document).ready(() => {
         // eslint-disable-next-line
         prompt("Your browser does not support GeoLocation. You can use Search to search for a City Lookup.");
     }
+
+
+    document.querySelector("#degBtn").addEventListener("click", () => {
+        const aI = document.querySelector(".deg"),
+            aI2 = aI.getAttribute("deg"),
+            aI3 = String(aI2);
+
+        if (aI3 === "f") {
+
+            const valFar = document.querySelector(".temp").innerHTML,
+                convFtoC = (valFar - 32) * 0.5556,
+                convFtoCtoNum = Number(convFtoC),
+                floorIt = Math.round(convFtoCtoNum, -1);
+
+            document.querySelector(".temp").innerHTML = floorIt;
+            document.querySelector(".deg").innerHTML = " C";
+            document.querySelector(".deg").setAttribute("deg", "c");
+        } else {
+            const valCel = document.querySelector(".temp").innerHTML,
+                convCtoF = (valCel * 1.8) + 32,
+                convCtoFtoNum = Number(convCtoF),
+                roundIt = Math.round(convCtoFtoNum, -1);
+
+            document.querySelector(".temp").innerHTML = roundIt;
+            document.querySelector(".deg").innerHTML = " F";
+            document.querySelector(".deg").setAttribute("deg", "f");
+        }
+    });
+
 
 });
