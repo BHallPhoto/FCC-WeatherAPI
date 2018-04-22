@@ -23,14 +23,12 @@
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for City" aria-label="Search for City" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Search</button>
-                                    </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for City" aria-label="Search for City" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Search</button>
                                 </div>
-                            
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -49,15 +47,18 @@
                         <div class="currentTime"></div>
                     </div>
                     <div class="box c">
+                            <img src="https://icons.wxug.com/i/c/k/sunny.gif" alt="">
                             <div class="condition"></div>
                     </div>
                     <div class="box d">
-                        <span class="temp"></span>
+                        <div class="temp"></div>
+                        <a href="#" class="button">Celsius</a>
                     </div>
                     <div class="box e">
                         <div class="humidity"></div>
-                        <div class="windSpeed"></div>
-                        <div class="windDirection"></div>
+                        <div><span class="windScale"></span><span class="windSpeed"></span></div>
+                        <span class="windDirection"></span>
+                        <i id="windDirection"></i>
                     </div>
                 </div>                
             </div>
@@ -65,27 +66,4 @@
     </div>
 </body>
 </html>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content rounded">
-          <div class="modal-header">
-             <h5 class="modal-title" id="modalLabel">City Search</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-             </button>
-          </div>
-          <div class="modal-body">
-             <div class="form-group">
-                <div class="input-group">
-                   <input type="text" id="cityVal" class="form-control" placeholder="City">
-                </div>
-             </div>
-          </div>
-          <div class="input-group modal-footer">
-             <button type="button" class="btn btn-sm"data-dismiss="modal">Close</button>
-             <input type="button" id="searchSubmit" class="btn btn-sm" name="cityState" value="Search" data-dismiss="modal" onclick="searchCity()">
-          </div>
-       </div>
-    </div>
-</div>
+<!-- https://icons.wxug.com/i/c/k/" ".gif -->

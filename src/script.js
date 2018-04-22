@@ -1,3 +1,10 @@
+/**
+ * Weather API for FreeCodeCamp
+ * TODO:
+ * - Add Icon for Humidity
+ * - Add functionality to switch between F and C degrees
+ */
+
 // Time and date window function
 window.onload = function () {
 
@@ -17,10 +24,63 @@ window.onload = function () {
 // document ready json with jQuery
 $(document).ready(() => {
 
-    const apiKey = "0f3fd9a2b62cb8cd";
-    let dataUrl = "";
+    let dataUrl = "",
+        _windDeg = "";
 
+    const apiKey = "0f3fd9a2b62cb8cd",
+        windDegDir = function () {
+
+            const _wind = {
+                    "_from": "from",
+                    "numDeg": _windDeg,
+                    "deg": "deg"
+                },
+                {
+                    _from,
+                    numDeg,
+                    deg
+                } = _wind,
+                _xWind1 = "wi wi-wind ",
+                _xWind2 = _from + "-" + numDeg + "-" + deg,
+                xxI = _xWind1.concat(_xWind2);
+
+            return xxI;
+        },
+
+        windScale = function (windSpd) {
+
+            const grades = [
+                {"speed": 0, "desc": "Calm"},
+                {"speed": 2, "desc": "Light air"},
+                {"speed": 6, "desc": "Light breeze"},
+                {"speed": 12, "desc": "Gentle breeze"},
+                {"speed": 20, "desc": "Moderate breeze"},
+                {"speed": 29, "desc": "Fresh breeze"},
+                {"speed": 39, "desc": "Strong breeze"},
+                {"speed": 50, "desc": "High wind"},
+                {"speed": 62, "desc": "Gale"},
+                {"speed": 75, "desc": "Strong gale"},
+                {"speed": 89, "desc": "Storm"},
+                {"speed": 103, "desc": "Violent Storm"},
+                {"speed": 118, "desc": "Hurricane"}
+            ];
+            let speedDesc = {};
+
+            if (windSpd <= grades[1].speed) {
+                return "Calm";
+            }
+            speedDesc = grades.filter((spd) => {
+                return spd.speed < windSpd;
+            });
+
+            return speedDesc.pop().desc;
+
+        };
+
+    // parseData() retreives the data from url and parses it out to innerHTML.
     function parseData (data) {
+        // Parsing data to the DOM
+        _windDeg = data.current_observation.wind_degrees;
 
         const weatherData = {
                 "city": data.current_observation.display_location.city,
@@ -43,14 +103,16 @@ $(document).ready(() => {
             fullCityState = city + ", " + state;
 
         document.querySelector(".cityState").innerHTML = fullCityState;
-        document.querySelector(".temp").innerHTML = tempF;
+        document.querySelector(".temp").innerHTML = tempF + "° F";
         document.querySelector(".condition").innerHTML = condition;
         document.querySelector(".humidity").innerHTML = humidity;
-        document.querySelector(".windSpeed").innerHTML = windSpd;
+        document.querySelector(".windScale").innerHTML = windScale(windSpd);
+        document.querySelector(".windSpeed").innerHTML = " " + windSpd + " MPH";
         document.querySelector(".windDirection").innerHTML = windDir;
+        document.querySelector("#windDirection").setAttribute("class", windDegDir());
 
     }
-
+    // Get JSON Data from WeatherUnderground then send data to parseData();
     function getJson (data) {
 
         $.ajax({
@@ -59,25 +121,19 @@ $(document).ready(() => {
             "data": data,
             "async": false,
             "beforeSend": (xhr) => {
-
                 if (xhr && xhr.overrideMimeType) {
-
                     xhr.overrideMimeType("application/json;charset=utf-8");
-
                 }
-
             },
             "dataType": "json",
             "success": (data) => {
-
                 parseData(data);
-
             }
-
         });
 
     }
 
+    // Once succes, success() gets the url and sends it to getJson(dataUrl);
     function success (position) {
 
         dataUrl = "https://cors-anywhere.herokuapp.com/http://api.wunderground.com/api/" + apiKey + "/geolookup/conditions/q/" + position.coords.latitude + "," + position.coords.longitude + ".json";
@@ -85,15 +141,12 @@ $(document).ready(() => {
 
     }
 
+    // Checks whether or not if GeoLocation is turned on, if so success(position);
     if (navigator.geolocation) {
-
         navigator.geolocation.getCurrentPosition(success);
-
     } else {
-
         // eslint-disable-next-line
         prompt("Your browser does not support GeoLocation. You can use Search to search for a City Lookup.");
-
     }
 
 });
