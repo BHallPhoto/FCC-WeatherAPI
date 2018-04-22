@@ -1,7 +1,6 @@
 /**
  * Weather API for FreeCodeCamp
  * TODO:
- * - Add Icon for Humidity
  * - Add Search for City, anywhere!
  */
 
@@ -100,12 +99,13 @@ $(document).ready(() => {
                 windDir,
                 windSpd
             } = weatherData,
-            fullCityState = city + ", " + state;
+            fullCityState = city + ", " + state,
+            humidityNoPercent = String(humidity).replace(/\D ?/g, "");
 
         document.querySelector(".cityState").innerHTML = fullCityState;
         document.querySelector(".temp").innerHTML = tempF;
         document.querySelector(".condition").innerHTML = condition;
-        document.querySelector(".humidity").innerHTML = humidity;
+        document.querySelector(".humidity").innerHTML = humidityNoPercent + " ";
         document.querySelector(".windScale").innerHTML = windScale(windSpd);
         document.querySelector(".windSpeed").innerHTML = " " + windSpd + " MPH";
         document.querySelector(".windDirection").innerHTML = windDir;
@@ -147,6 +147,7 @@ $(document).ready(() => {
     } else {
         // eslint-disable-next-line
         prompt("Your browser does not support GeoLocation. You can use Search to search for a City Lookup.");
+        // FIXME: Add Search somewhere in this area, or point to search function.
     }
 
 
@@ -160,7 +161,7 @@ $(document).ready(() => {
             const valFar = document.querySelector(".temp").innerHTML,
                 convFtoC = (valFar - 32) * 0.5556,
                 convFtoCtoNum = Number(convFtoC),
-                floorIt = Math.round(convFtoCtoNum, -1);
+                floorIt = Number(Math.round(convFtoCtoNum * 10) / 10);
 
             document.querySelector(".temp").innerHTML = floorIt;
             document.querySelector(".deg").innerHTML = " C";
@@ -169,13 +170,12 @@ $(document).ready(() => {
             const valCel = document.querySelector(".temp").innerHTML,
                 convCtoF = (valCel * 1.8) + 32,
                 convCtoFtoNum = Number(convCtoF),
-                roundIt = Math.round(convCtoFtoNum, -1);
+                roundIt = Number(Math.round(convCtoFtoNum * 10) / 10);
 
             document.querySelector(".temp").innerHTML = roundIt;
             document.querySelector(".deg").innerHTML = " F";
             document.querySelector(".deg").setAttribute("deg", "f");
         }
     });
-
 
 });
