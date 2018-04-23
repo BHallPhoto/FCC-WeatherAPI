@@ -24,9 +24,9 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for City" aria-label="Search for City" aria-describedby="basic-addon2">
+                                <input id="searchInput" type="text" class="form-control" placeholder="Search for City" aria-label="Search for City" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Search</button>
+                                    <button id="button" class="btn btn-outline-secondary" type="button" data-dismiss="modal">Search</button>
                                 </div>
                             </div>    
                         </div>
@@ -47,16 +47,34 @@
                         <div class="currentTime"></div>
                     </div>
                     <div class="box c">
-                            <img src="https://icons.wxug.com/i/c/k/sunny.gif" alt="">
+                            <img id="currIcon" src="" alt="">
                             <div class="condition"></div>
                     </div>
                     <div class="box d">
-                        <div><span class="temp"></span>°<span class="deg" deg="f"> F</span></div>
-                        <button id="degBtn" href="#" class="btn btn-secondary">°F <span class="switch"><i class="fas fa-sync"></i></span> °C</button>
+                        <div>
+                            <span class="temp"></span>
+                            °
+                            <span class="deg" deg="f"> F</span>
+                        </div>
+                        <button id="degBtn" href="#" class="btn btn-secondary">
+                            °F 
+                            <span class="switch">
+                                <i class="fas fa-sync"></i>
+                            </span> 
+                            °C
+                        </button>
                     </div>
                     <div class="box e">
-                        <div><span class="humidity"></span><span> <i class="wi wi-humidity"></i></span></div>
-                        <div><span class="windScale"></span><span class="windSpeed"></span></div>
+                        <div>
+                            <span class="humidity"></span>
+                            <span> 
+                                <i class="wi wi-humidity"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="windScale"></span>
+                            <span class="windSpeed"></span>
+                        </div>
                         <span class="windDirection"></span>
                         <i id="windDirection"></i>
                     </div>

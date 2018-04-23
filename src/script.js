@@ -2,6 +2,7 @@
  * Weather API for FreeCodeCamp
  * TODO:
  * - Add Search for City, anywhere!
+ * - continue to work on City search...
  */
 
 // Time and date window function
@@ -85,6 +86,7 @@ $(document).ready(() => {
                 "city": data.current_observation.display_location.city,
                 "condition": data.current_observation.weather,
                 "humidity": data.current_observation.relative_humidity,
+                "icon": data.current_observation.icon_url,
                 "state": data.current_observation.display_location.state_name,
                 "tempF": data.current_observation.temp_f,
                 "windDir": data.current_observation.wind_dir,
@@ -94,13 +96,15 @@ $(document).ready(() => {
                 city,
                 condition,
                 humidity,
+                icon,
                 state,
                 tempF,
                 windDir,
                 windSpd
             } = weatherData,
             fullCityState = city + ", " + state,
-            humidityNoPercent = String(humidity).replace(/\D ?/g, "");
+            humidityNoPercent = String(humidity).replace(/\D ?/g, ""),
+            myIcons = icon.replace(/k/g, "i");
 
         document.querySelector(".cityState").innerHTML = fullCityState;
         document.querySelector(".temp").innerHTML = tempF;
@@ -110,6 +114,7 @@ $(document).ready(() => {
         document.querySelector(".windSpeed").innerHTML = " " + windSpd + " MPH";
         document.querySelector(".windDirection").innerHTML = windDir;
         document.querySelector("#windDirection").setAttribute("class", windDegDir());
+        document.querySelector("#currIcon").setAttribute("src", myIcons);
 
     }
     // Get JSON Data from WeatherUnderground then send data to parseData();
@@ -141,6 +146,8 @@ $(document).ready(() => {
 
     }
 
+    
+
     // Checks whether or not if GeoLocation is turned on, if so success(position);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success);
@@ -150,7 +157,7 @@ $(document).ready(() => {
         // FIXME: Add Search somewhere in this area, or point to search function.
     }
 
-
+    // Button for switching between F and C
     document.querySelector("#degBtn").addEventListener("click", () => {
         const aI = document.querySelector(".deg"),
             aI2 = aI.getAttribute("deg"),
@@ -176,6 +183,20 @@ $(document).ready(() => {
             document.querySelector(".deg").innerHTML = " F";
             document.querySelector(".deg").setAttribute("deg", "f");
         }
+    });
+
+    // Button to search for City FIXME:
+    $("#button").click(() => {
+        const query = document.querySelector("#searchInput").value,
+            searchDataUrl = "https://cors-anywhere.herokuapp.com/https://autocomplete.wunderground.com/aq?format=JSON&query=",
+            srchData = searchDataUrl.replace(/\s+/g, "%20");
+
+        $.getJSON(srchData + query, (json) => {
+            $.each(json.RESULTS, (i, location) => {
+                console.log(i, location);
+            });
+        });
+
     });
 
 });
