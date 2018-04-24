@@ -46,7 +46,6 @@ $(document).ready(() => {
 
             return xxI;
         },
-
         windScale = function (windSpd) {
 
             const grades = [
@@ -75,7 +74,8 @@ $(document).ready(() => {
 
             return speedDesc.pop().desc;
 
-        };
+        },
+        input = document.getElementById("searchInput");
 
     // parseData() retreives the data from url and parses it out to innerHTML.
     function parseData (data) {
@@ -146,8 +146,6 @@ $(document).ready(() => {
 
     }
 
-    
-
     // Checks whether or not if GeoLocation is turned on, if so success(position);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success);
@@ -186,17 +184,36 @@ $(document).ready(() => {
     });
 
     // Button to search for City FIXME:
-    $("#button").click(() => {
-        const query = document.querySelector("#searchInput").value,
+
+    input.addEventListener("keydown", (event) => {
+        const query = document.getElementById("searchInput").value,
             searchDataUrl = "https://cors-anywhere.herokuapp.com/https://autocomplete.wunderground.com/aq?format=JSON&query=",
             srchData = searchDataUrl.replace(/\s+/g, "%20");
 
-        $.getJSON(srchData + query, (json) => {
-            $.each(json.RESULTS, (i, location) => {
-                console.log(i, location);
+        if (event.keyCode === 13) {
+            console.log("hey");
+        } else {
+            $.getJSON(srchData + query, (json) => {
+                $.each(json.RESULTS, (index, location) => {
+                    console.log(location);
+                });
             });
-        });
+        }
+
 
     });
+
+    // $("#button").click(() => {
+    //     const query = document.querySelector("#searchInput").value,
+    //         searchDataUrl = "https://cors-anywhere.herokuapp.com/https://autocomplete.wunderground.com/aq?format=JSON&query=",
+    //         srchData = searchDataUrl.replace(/\s+/g, "%20");
+
+    //     $.getJSON(srchData + query, (json) => {
+    //         $.each(json.RESULTS, (index, location) => {
+    //             console.log(index, location);
+    //         });
+    //     });
+
+    // });
 
 });

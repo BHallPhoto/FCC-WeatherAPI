@@ -1,4 +1,3 @@
 .gitignore
-.eslintrc.json
 /jsonExample
 /node_modules
